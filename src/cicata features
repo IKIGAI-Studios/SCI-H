@@ -1,0 +1,27 @@
+window 900x600
+panel login/admin view 504x437
+height buttons 35
+
+---- ICONS
+icon admin, basic, password 30x30
+SCI-H 237x90
+logo ut 161x74
+logo cicata 95x83
+
+
+---- TEXTS
+welcome text Inter 18
+source camera Inter V 14
+user/password label Inter Semi Bold 12
+inputs Inter Medium 12
+buttons Inter V weight bold 14
+
+
+---- COLORS
+
+#F1F1F1 (white)
+#0F3D3E (green)
+#E2DCC8 (beige)
+#100F0F (black)
+
+
