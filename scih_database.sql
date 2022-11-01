@@ -1,15 +1,15 @@
 -- -----------------------------------------------------
--- Database MATLAB
+-- Database SCIH
 -- -----------------------------------------------------
 CREATE DATABASE IF NOT EXISTS `SCIH` DEFAULT CHARACTER SET utf8 ;
 USE `SCIH` ;
 
 -- -----------------------------------------------------
--- Table `MATLAB`.`User`
+-- Table `SCIH`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SCIH`.`User` (
   `idUser` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL UNIQUE,
   `password` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -19,7 +19,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `MATLAB`.`Device`
+-- Table `SCIH`.`Device`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SCIH`.`Device` (
   `idDevice` INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `MATLAB`.`ReferenceImage`
+-- Table `SCIH`.`ReferenceImage`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SCIH`.`ReferenceImage` (
   `idRImage` INT NOT NULL AUTO_INCREMENT,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`ReferenceImage` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `MATLAB`.`QuarrelImage`
+-- Table `SCIH`.`QuarrelImage`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
   `idQImage` INT NOT NULL AUTO_INCREMENT,
@@ -96,3 +96,6 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+
+select * from user;
