@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`Device` (
   `idUser` INT NOT NULL,
   `brand` VARCHAR(45) NOT NULL,
   `model` VARCHAR(45) NOT NULL,
-  `img_count` VARCHAR(45) NULL,
+  `img_count` INT NOT NULL,
   PRIMARY KEY (`idDevice`),
   INDEX `idUser_idx` (`idUser` ASC) VISIBLE,
   CONSTRAINT `idUserDevice`
