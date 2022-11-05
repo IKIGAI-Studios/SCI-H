@@ -98,4 +98,4 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
 ENGINE = InnoDB;
 
 
-select * from user;
+select * from device;
