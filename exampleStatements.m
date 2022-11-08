@@ -23,3 +23,7 @@ query = strcat("SELECT password, type FROM User ", ...
 rslt = fetch(conn, query);
 %% Close connection
 close(conn);
+%% Test Load Photo
+[file, path] = uigetfile('*png; *.jpg; *.jpeg; *.HEIC', 'Select One or More Files', 'MultiSelect', 'on');
+disp(width(file));
+
