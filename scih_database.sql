@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`ReferenceImage` (
   `idUser` INT NOT NULL,
   `file` VARCHAR(45) NOT NULL,
   `path` VARCHAR(45) NOT NULL,
-  `desc` VARCHAR(45) NOT NULL,
+  `des` VARCHAR(45) NOT NULL,
   `orig` VARCHAR(45) NOT NULL,
   `cam` VARCHAR(45) NOT NULL,
   `adv_photo` VARCHAR(100) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
   `idUser` INT NOT NULL,
   `file` VARCHAR(45) NOT NULL,
   `path` VARCHAR(45) NOT NULL,
-  `desc` VARCHAR(45) NOT NULL,
+  `des` VARCHAR(45) NOT NULL,
   `orig` VARCHAR(45) NOT NULL,
   `cam` VARCHAR(45) NOT NULL,
   `adv_photo` VARCHAR(100) NOT NULL,
@@ -98,4 +98,6 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
 ENGINE = InnoDB;
 
 
-select * from user;
+select * from ReferenceImage;
+
+INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Practica 8.png', '.\images\ReferenceImage\Practica 8.png', 'test', 'test', 'test', 'test', 'test', 'test');
