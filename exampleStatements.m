@@ -11,8 +11,8 @@ basicData = table("basicUser","pass123", "basic", "First Basic User", "basic@ema
             'VariableNames', {'username', 'password', 'type', 'name', 'email'});
 
 % Statement to execute a Sql Write to database in order: Connection, Table, Values
-%sqlwrite(conn, 'User', adminData);
-%sqlwrite(conn, 'User', basicData);
+sqlwrite(conn, 'User', adminData);
+sqlwrite(conn, 'User', basicData);
 %% Statements to get all columns of the table
 % Statement to execute a select on table User
 userValue = sqlread(conn, 'User');
@@ -23,7 +23,4 @@ query = strcat("SELECT password, type FROM User ", ...
 rslt = fetch(conn, query);
 %% Close connection
 close(conn);
-%% Test Load Photo
-[file, path] = uigetfile('*png; *.jpg; *.jpeg; *.HEIC', 'Select One or More Files', 'MultiSelect', 'on');
-disp(width(file));
 
