@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `SCIH`.`QuarrelImage` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
+select * from user;
 select * from ReferenceImage;
-
-INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Practica 8.png', '.\images\ReferenceImage\Practica 8.png', 'test', 'test', 'test', 'test', 'test', 'test');
+INSERT INTO Device VALUES (null, 1, "Example Brand", "Example Model", "0");
+INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Example_Image.png', '.\images\ReferenceImage\Example_Image.png', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl');
