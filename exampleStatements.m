@@ -2,7 +2,7 @@ clear;
 clc;
 
 % Create the connection with the ODBC connector previously created database in "databaseExplorer"
-conn = database('conn_scih', 'root', 'root');
+conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
 
 % Assign values ​​to a table and select all columns to use
 adminData = table("root","root123", "admin", "First Admin User", "admin@email.com", ...
