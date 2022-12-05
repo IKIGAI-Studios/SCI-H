@@ -29,3 +29,6 @@ figure(40), imshow(C1)
 detection = PCE(C)
 detection1 = PCE(C1)
 
+addpath(pdw, "Filter");
+addpath(pdw, "Functions");
+
