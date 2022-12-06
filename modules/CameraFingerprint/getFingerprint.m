@@ -58,8 +58,8 @@ for i=1:database_size
     else
         im = Images{i};
     end
-%      X = imread(im);  %% Descomente esta linea para leer la imagen 19 feb 2021
-   X = im;          %% Comente esta en su lugar
+     X = imread(im);  %% Descomente esta linea para leer la imagen 19 feb 2021
+%    X = im;          %% Comente esta en su lugar
     X = double255(X);
     if t==0
         [M,N,three]=size(X);
@@ -104,10 +104,10 @@ RP = cat(3,RPsum{1}./(NN{1}+1),RPsum{2}./(NN{2}+1),RPsum{3}./(NN{3}+1));
 
     
 %%% FUNCTIONS %%
-% % % % % % function X=double255(X)
-% % % % % % % convert to double ranging from 0 to 255
-% % % % % % datatype = class(X);
-% % % % % %     switch datatype,                % convert to [0,255]
-% % % % % %         case 'uint8',  X = double(X);
-% % % % % %         case 'uint16', X = double(X)/65535*255;  
-% % % % % %     end
+function X=double255(X)
+% convert to double ranging from 0 to 255
+datatype = class(X);
+    switch datatype,                % convert to [0,255]
+        case 'uint8',  X = double(X);
+        case 'uint16', X = double(X)/65535*255;  
+    end

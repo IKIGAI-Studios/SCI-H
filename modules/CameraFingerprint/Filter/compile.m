@@ -36,7 +36,7 @@
 %For information on commercial licenses, contact Rice University's Office of 
 %Technology Transfer at techtran@rice.edu or (713) 348-6173
 
-mex mdwt.cpp mdwt_r.cpp
-mex midwt.cpp midwt_r.cpp
-mex mrdwt.cpp mrdwt_r.cpp
-mex mirdwt.cpp mirdwt_r.cpp
+mex modules\CameraFingerprint\Filter\mdwt.cpp modules\CameraFingerprint\Filter\mdwt_r.cpp
+mex modules\CameraFingerprint\Filter\midwt.cpp modules\CameraFingerprint\Filter\midwt_r.cpp
+mex modules\CameraFingerprint\Filter\mrdwt.cpp modules\CameraFingerprint\Filter\mrdwt_r.cpp
+mex modules\CameraFingerprint\Filter\mirdwt.cpp modules\CameraFingerprint\Filter\mirdwt_r.cpp
