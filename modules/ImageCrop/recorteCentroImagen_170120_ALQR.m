@@ -24,7 +24,7 @@
 % Nom_image='BL85_1_ (24).jpg.jpg'; 
 % dirC_r='C:\Users\anala\OneDrive\Documentos\MATLAB\Ruido\Codigos Doctorado\CodigosProyecto\Actualizados 100419\Recorte _GRAY\Test_Recortes\';
 % recorteCentroImagen_170120_ALQR(IO,tamB,Nom_image,dirC_r,n);
-function recorteCentroImagen_170120_ALQR(IO, tamB, Nom_image, dirC_r, n)
+function recorteCentroImagen_170120_ALQR(IO, tamB, Nom_image, dirC_r)
     % Obtiene las dimensiones de la imagen.
     [M, N, RGB] = size(IO); 
     
@@ -43,4 +43,4 @@ function recorteCentroImagen_170120_ALQR(IO, tamB, Nom_image, dirC_r, n)
     RecorteRGB(:, :, 3) = IO(pixelSM:LpixelM, pixelIN:LpixelN, 3);
     
     % Guarda el recorte con el nombre y en el directorio especificado
-    guardaRecorteSG_040919_ALQR(RecorteRGB, Nom_image, n, dirC_r);
+    save(strcat(dirC_r,Nom_image,'_r.mat'),'RecorteRGB');
