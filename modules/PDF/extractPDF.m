@@ -1,10 +1,10 @@
 %% Extract and save PFD (.jpg and .mat)
 
-function extractPDF(conn, idUser, type)
+function extractPDF(conn, idQImage, type)
     if type == "reference"
         query = strcat("SELECT path, file FROM ReferenceImage");
     else
-        query = strcat("SELECT path, file FROM DisputeImage WHERE idUser = ",string(idUser));
+        query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     end
     
     % Variables

@@ -1,12 +1,12 @@
-function extractAndSaveAreas(conn, idUser, type)
-    conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
-    type = "dispute";
-    idUser = 2;
+function extractAndSaveAreas(conn, idQImage, type)
+%     conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
+%     type = "dispute";
+%     idUser = 2;
     
     if type == "reference"
         query = strcat("SELECT path, file FROM ReferenceImage");
     else
-        query = strcat("SELECT path, file FROM DisputeImage WHERE idUser = ", string(idUser));
+        query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     end
     
     try

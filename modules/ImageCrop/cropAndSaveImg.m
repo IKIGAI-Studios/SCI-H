@@ -1,10 +1,10 @@
 %% Crop and save dispute images in folder
 
-function cropAndSaveImg(conn, idUser, type)
+function cropAndSaveImg(conn, idQImage, type)
     if type == "reference"
         query = strcat("SELECT path, file FROM ReferenceImage");
     else
-        query = strcat("SELECT path, file FROM DisputeImage WHERE idUser = ",string(idUser));
+        query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     end
 
     try

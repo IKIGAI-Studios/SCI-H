@@ -1,11 +1,10 @@
 %% Extract PRNU from a crop
 % Database connection
-function extractPRNU(conn, idUser, type)
-
+function extractPRNU(conn, idQImage, type)
     if type == "reference"
         query = strcat("SELECT path, file FROM ReferenceImage");
     else
-        query = strcat("SELECT path, file FROM DisputeImage WHERE idUser = ",string(idUser));
+        query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     end
         
     try
