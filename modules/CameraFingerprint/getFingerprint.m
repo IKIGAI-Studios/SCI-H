@@ -58,8 +58,8 @@ for i=1:database_size
     else
         im = Images{i};
     end
-%      X = imread(im);  %% Descomente esta linea para leer la imagen 19 feb 2021
-   X = im;          %% Comente esta en su lugar
+     X = imread(im);  %% Descomente esta linea para leer la imagen 19 feb 2021
+%    X = im;          %% Comente esta en su lugar
     X = double255(X);
     if t==0
         [M,N,three]=size(X);

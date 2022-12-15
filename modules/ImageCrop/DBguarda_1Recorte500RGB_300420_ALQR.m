@@ -1,6 +1,29 @@
+%%   CLASIFICADOR ESTADÍSTICO EN LA IDENTIFICACIÓN DE LA FUENTE DE CAPTURA
+%                          DE IMÁGENES DIGITALES.
+%           Ana Laura Quintanar Reséndiz, Rubén Vázquez Medina
+%                               IPN-CIATA-QRO
+%                                 ABRIL 2020
+% --------------------------------------------------------------------------
+% RESUMEN:
+% Función que recorta una imagen RGB y guarda los recortes en el directorio
+% específicado en formato .mat. 
+% --------------------------------------------------------------------------
+% Función        DBguarda_1Recorte500RGB_300420_ALQR(directorio,dirC_1r_RGB)
+% INPUT:
+%   directorio   Ubicación de la DB de imágenes en RGB. 
+%   dirC_1r_RGB  Ubicación de la DB donde se guardarán los recortes de las
+%                imágenes en RGB, en formato .mat. 
+% OUTPUT:
+%                Recortes (500x500) de Imágenes en RGB.
+% EXAMPLE:
+% directorio='D:\ALQR\ALQR_Doctorado\Doctorado\BD-ImageForens\PAPER_KLD\DB_ImagenesReferencia\'; 
+% dirC_1r_RGB='D:\ALQR\ALQR_Doctorado\Doctorado\BD-ImageForens\PAPER_KLD\Caso1Nat\DB_recortes500x500_ref\';
+% DBguarda_1Recorte500RGB_300420_ALQR(directorio,dirC_1r_RGB);
+% --------------------------------------------------------------------------
+%%
 function DBguarda_1Recorte500RGB_300420_ALQR(directorio, dirC_1r_RGB)
-            % Obtiene el nombre las imágenes y su ubicación en DB. 
-            [nombre_imagen, Marca] = marcaRGB_280219_ALQR(directorio);
+            % Obtiene el nombre las imágenes y su ubicación en DB.
+            [nombre_imagen, Marca] = marcaRGB_280219_ALQR(directorio);       %CAMBIAR
             % Obtiene el número de marcas.
             U = length(Marca);
             % Declaración de variables.

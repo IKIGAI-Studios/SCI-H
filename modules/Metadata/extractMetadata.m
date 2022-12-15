@@ -28,7 +28,7 @@ function metadata = extractMetadata(path, file)
             cam = strcat(cam, " ", string(meta.Model));
         end
     end
-    if isfield(meta,'GPSInfo') == 1
+    if isfield(meta,'GPSInfo') == 1 && isfield(meta,'GPSInfo.GPSLatitude') == 1 
         if ~isempty(meta.GPSInfo)
             gps = strcat(string(meta.GPSInfo.GPSLatitude(1)),"°",string(meta.GPSInfo.GPSLatitude(2)),"'",string(meta.GPSInfo.GPSLatitude(3)),"''", meta.GPSInfo.GPSLatitudeRef, " , ", string(meta.GPSInfo.GPSLongitude(1)),"°",string(meta.GPSInfo.GPSLongitude(2)),"'",string(meta.GPSInfo.GPSLongitude(3)),"''", meta.GPSInfo.GPSLongitudeRef);
         end
