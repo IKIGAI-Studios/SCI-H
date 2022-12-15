@@ -11,7 +11,7 @@ try
     imagenesRefDev = fetch(conn, queryNImgRef);
     imagenesDis = fetch(conn, queryImgDis);
 
-    
+
 
     % Obtener número máximo de imagenes de un dispositivo
     imagenesMaxRef = max(imagenesRefDev.img_count);
@@ -94,7 +94,7 @@ try
         h=h+1;
     end
     
-    %% Obtienen el máximo de una matriz que ya contiene los HLD promedio. Función se llama maxSIM
+    %% Obtienen el máximo de una matriz que ya contiene los HLD promedio.
     [imgR, imgD, device] = size(indC);
     devicesID = zeros(1,imgD);
     for i=1 : imgD
