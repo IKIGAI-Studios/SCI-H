@@ -102,8 +102,18 @@ ADD COLUMN `model_count` INT(11) NOT NULL AFTER `route`,
 CHANGE COLUMN `idDevice` `idDevice` INT(11) NOT NULL ;
 
 delete from ReferenceImage where idRImage = 3;
-select * from User;
+select * from Device;
+SELECT idDevice, img_count FROM Device;
+SELECT path, file FROM ReferenceImage WHERE idDevice = 21;
 select * from ReferenceImage;
+DELETE FROM DisputeImage WHERE idQImage between 20 and 22;
 INSERT INTO Device VALUES (null, 1, "Example Brand", "Example Model", "0");
 INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Example_Image.png', '.\images\ReferenceImage\Example_Image.png', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl');
 SELECT idRImage, file, username FROM ReferenceImage JOIN User on User.idUser = ReferenceImage.idUser WHERE ReferenceImage.idUser = 1;
+
+SELECT count(idDevice) n FROM Device;
+
+SELECT max(img_count) c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice;
+SELECT count(*) c FROM DisputeImage;
+SELECT DISTINCT(Device.idDevice), img_count c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice ORDER BY img_count DESC LIMIT 1;
+SELECT img_count FROM Device WHERE img_count
