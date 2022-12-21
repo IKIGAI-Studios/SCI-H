@@ -2,9 +2,13 @@
 
 function extractPDF(conn, idQImage, type)
     if type == "reference"
-        query = strcat("SELECT path, file FROM ReferenceImage");
+        query = strcat("SELECT path, file, idRImage FROM ReferenceImage");
+        tb = 'RefPDF';
+        idNm = "idRImage";
     else
         query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
+        tb = 'DisPDF';
+        idNm = "idDImage";
     end
     
     % Variables
@@ -16,7 +20,7 @@ function extractPDF(conn, idQImage, type)
 
     try
         imagenes = fetch(conn, query);
-
+    
         for i=1 : height(imagenes)
         
             % Obtener nombre de la imagen
@@ -27,6 +31,7 @@ function extractPDF(conn, idQImage, type)
     
             % Directorio para guardar los resultados
             dirC_r = strcat(imagenes.path(i), "PDF\");
+            dirC_route = strcat(imagenes.path(i), "PDF");
     
             % Obtener la ubicación de las matrices PRNU
             ubica_mat_prnu = strcat(imagenes.path(i), "PRNU\", Nom_mat_prnu);
@@ -43,6 +48,19 @@ function extractPDF(conn, idQImage, type)
             
             % Guarda las aproximaciones de las distribuciones estadísticas.
             save(strcat(dirC_r, Nom_image, '_rho.mat'),'Rho');
+
+            rslt = fetch(conn, strcat("SELECT * FROM ", tb, " WHERE ", idNm, " = ", string(imagenes.idRImage(i))));
+            if isempty(rslt)
+                if type == "reference"
+                    newPDF = table(str2num(string(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
+                                    'VariableNames', {'idRImage' 'file' 'path'});
+                else
+                    newPDF = table(str2num(char(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
+                                    'VariableNames', {'idDImage', 'file', 'path'});
+                end
+                % Try write in database
+                sqlwrite(conn, tb, newPDF);
+            end
         end
     catch e
         msgbox(strcat("Error ", char(e.message)), "Warning", "error");

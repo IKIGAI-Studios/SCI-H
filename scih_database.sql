@@ -101,11 +101,38 @@ ADD COLUMN `route` VARCHAR(100) NOT NULL AFTER `img_count`,
 ADD COLUMN `model_count` INT(11) NOT NULL AFTER `route`,
 CHANGE COLUMN `idDevice` `idDevice` INT(11) NOT NULL ;
 
+CREATE TABLE `bydyedlbqilmoph6nqcf`.`RefPDF` (
+`idPDF` INT NOT NULL AUTO_INCREMENT,
+`idRImage` INT NOT NULL,
+`file` VARCHAR(100) NOT NULL,
+`path` VARCHAR(100) NOT NULL,
+PRIMARY KEY (`idPDF`),
+INDEX `idRImage_idx` (`idRImage` ASC) VISIBLE,
+CONSTRAINT `idRImage`
+FOREIGN KEY (`idRImage`)
+REFERENCES `bydyedlbqilmoph6nqcf`.`ReferenceImage` (`idRImage`)
+ON DELETE CASCADE
+ON UPDATE CASCADE);
+
+CREATE TABLE `bydyedlbqilmoph6nqcf`.`DisPDF` (
+`idPDF` INT NOT NULL AUTO_INCREMENT,
+`idDImage` INT NOT NULL,
+`file` VARCHAR(100) NOT NULL,
+`path` VARCHAR(100) NOT NULL,
+PRIMARY KEY (`idPDF`),
+INDEX `idDImage_idx` (`idDImage` ASC) VISIBLE,
+CONSTRAINT `idDImage`
+FOREIGN KEY (`idDImage`)
+REFERENCES `bydyedlbqilmoph6nqcf`.`DisputeImage` (`idQImage`)
+ON DELETE CASCADE
+ON UPDATE CASCADE);
+
+
 delete from ReferenceImage where idRImage = 3;
 select * from Device;
 SELECT idDevice, img_count FROM Device;
 SELECT path, file FROM ReferenceImage WHERE idDevice = 21;
-select * from ReferenceImage;
+select * from DisPDF;
 DELETE FROM DisputeImage WHERE idQImage between 20 and 22;
 INSERT INTO Device VALUES (null, 1, "Example Brand", "Example Model", "0");
 INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Example_Image.png', '.\images\ReferenceImage\Example_Image.png', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl');
@@ -113,7 +140,10 @@ SELECT idRImage, file, username FROM ReferenceImage JOIN User on User.idUser = R
 
 SELECT count(idDevice) n FROM Device;
 
+insert into DisPDF values (null, 23, "a", "a");
 SELECT max(img_count) c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice;
 SELECT count(*) c FROM DisputeImage;
 SELECT DISTINCT(Device.idDevice), img_count c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice ORDER BY img_count DESC LIMIT 1;
-SELECT img_count FROM Device WHERE img_count
+SELECT idDevice, brand, model, img_count, username FROM Device JOIN User ON User.idUser = Device.idUser ORDER BY img_count DESC;
+delete from DisPDF where idPDF = 1;
+INSERT INTO RefPDF values (null, 243, 'OS10_1_(30)_prnu.mat_rho.jpg' , 'images\ReferenceImage\OS10\OS10_1\PDF\ReferenceImage\ ');
