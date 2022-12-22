@@ -24,10 +24,6 @@ function extractPDF(conn, idQImage, type)
         if ~imagenes.HLDanalysis
             disp(" no anal")
         end
-
-        if imagenes.HLDanalysis == 0
-            disp(" no anal")
-        end
     
         for i=1 : height(imagenes)
         
@@ -57,21 +53,18 @@ function extractPDF(conn, idQImage, type)
             % Guarda las aproximaciones de las distribuciones estadísticas.
             save(strcat(dirC_r, Nom_image, '_rho.mat'),'Rho');
 
-            rslt = fetch(conn, strcat("SELECT HLDanalysis FROM ReferenceImage WHERE ", idNm, " = ", string(imagenes.idRImage(i))));
-            if rslt.HLDanalysis == 0
+            rslt = fetch(conn, strcat("SELECT * FROM ", tb, " WHERE ", idNm, " = ", string(imagenes.idRImage(i))));
+            if isempty(rslt)
                 if type == "reference"
-                    query = strcat("UPDATE ReferenceImage SET HLDanalysis = 1 WHERE idRImage = ", string(imagenes.idRImage(i)));
-%                     newPDF = table(str2num(string(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
-%                                     'VariableNames', {'idRImage' 'file' 'path'});
+                    query = strcat
+                    newPDF = table(str2num(string(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
+                                    'VariableNames', {'idRImage' 'file' 'path'});
                 else
-                    query = strcat("UPDATE DisputeImage SET HLDanalysis = 1 WHERE idQImage = ", string(idQImage));
-%                     newPDF = table(str2num(char(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
-%                                     'VariableNames', {'idDImage', 'file', 'path'});
+                    newPDF = table(str2num(char(imagenes.idRImage(i))), strcat(string(Nom_image), "_rho.jpg"), dirC_r, ...
+                                    'VariableNames', {'idDImage', 'file', 'path'});
                 end
                 % Try write in database
-%                 sqlwrite(conn, tb, newPDF);
-                disp(query)
-                rslt = fetch(conn, query);
+                sqlwrite(conn, tb, newPDF);
             end
         end
     catch e
