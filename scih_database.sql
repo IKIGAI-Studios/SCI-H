@@ -132,18 +132,24 @@ delete from ReferenceImage where idRImage = 3;
 select * from Device;
 SELECT idDevice, img_count FROM Device;
 SELECT path, file FROM ReferenceImage WHERE idDevice = 21;
-select * from DisPDF;
+select count(*) from RefPDF;
+SELECT * FROM RefPDF WHERE idRImage = 131;
 DELETE FROM DisputeImage WHERE idQImage between 20 and 22;
 INSERT INTO Device VALUES (null, 1, "Example Brand", "Example Model", "0");
 INSERT INTO ReferenceImage (idDevice, idUser, file, path, des, orig, cam, adv_photo, gps, arch)  VALUES(1,1, 'Example_Image.png', '.\images\ReferenceImage\Example_Image.png', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl', 'exmpl');
 SELECT idRImage, file, username FROM ReferenceImage JOIN User on User.idUser = ReferenceImage.idUser WHERE ReferenceImage.idUser = 1;
 
+drop table RefPDF;
+
 SELECT count(idDevice) n FROM Device;
+
+UPDATE ReferenceImage SET HLDanalysis = 0 WHERE idRImage = 122;
 
 insert into DisPDF values (null, 23, "a", "a");
 SELECT max(img_count) c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice;
 SELECT count(*) c FROM DisputeImage;
 SELECT DISTINCT(Device.idDevice), img_count c FROM ReferenceImage JOIN Device ON Device.idDevice = ReferenceImage.idDevice ORDER BY img_count DESC LIMIT 1;
 SELECT idDevice, brand, model, img_count, username FROM Device JOIN User ON User.idUser = Device.idUser ORDER BY img_count DESC;
-delete from DisPDF where idPDF = 1;
-INSERT INTO RefPDF values (null, 243, 'OS10_1_(30)_prnu.mat_rho.jpg' , 'images\ReferenceImage\OS10\OS10_1\PDF\ReferenceImage\ ');
+delete from RefPDF where idPDF >= 1;
+INSERT INTO RefPDF values (null, 243, 'OS10_1_(30)_prnu.mat_rho.jpg' , 'images\ReferenceImage\OS10\OS10_1\PDF\ReferenceImage
+465');

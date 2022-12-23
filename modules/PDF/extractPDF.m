@@ -17,8 +17,9 @@ function extractPDF(conn, idQImage, type)
     try
         imagenes = fetch(conn, query);
 
-        if imagenes.HLDanalysis == 0
-           for i=1 : height(imagenes)
+        
+       for i=1 : height(imagenes)
+           if imagenes.HLDanalysis(i) == 0
                 % Obtener nombre de la imagen
                 Nom_image = strtok(string(imagenes.file(i)), ".");
         
