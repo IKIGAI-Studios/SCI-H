@@ -1,12 +1,15 @@
 %% Extract and save PFD (.jpg and .mat)
 
 function extractPDF(conn, idQImage, type)
+%     conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
+%     idQImage = 23;
+%     type = "dispute"; 
     if type == "reference"
-        query = strcat("SELECT path, file FROM ReferenceImage");
+        query = strcat("SELECT path, file, idRImage FROM ReferenceImage");
     else
         query = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     end
-    
+
     % Variables
     R = 256;
     Rho = zeros(R,3);
@@ -17,8 +20,7 @@ function extractPDF(conn, idQImage, type)
     try
         imagenes = fetch(conn, query);
 
-        for i=1 : height(imagenes)
-        
+       for i=1 : height(imagenes)
             % Obtener nombre de la imagen
             Nom_image = strtok(string(imagenes.file(i)), ".");
     
@@ -43,7 +45,15 @@ function extractPDF(conn, idQImage, type)
             
             % Guarda las aproximaciones de las distribuciones estadísticas.
             save(strcat(dirC_r, Nom_image, '_rho.mat'),'Rho');
-        end
+
+            if type == "reference"
+                query = strcat("UPDATE ReferenceImage SET HLDanalysis = 1 WHERE idRImage = ", string(imagenes.idRImage(i)));
+            else
+                query = strcat("UPDATE DisputeImage SET HLDanalysis = 1 WHERE idQImage = ", string(idQImage));
+            end
+            % Try write in database
+            fetch(conn, query);
+        end 
     catch e
         msgbox(strcat("Error ", char(e.message)), "Warning", "error");
     end

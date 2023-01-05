@@ -51,8 +51,10 @@ function [hi,di,Pi]= AprxRho_310519_ALQR (prnuGRAY,R,DM,a,b,dirC_r,Nom_mat_prnu,
     %******************************************************************
     % [hi,di] = histcounts(NormPRNU,v_DM,'Normalization','pdf');%++++++++ Normalizado
     %******************************************************************
-    figure(n),histogram('BinEdges',di,'BinCounts',hi);
-    hold on,plot((di(1:R)-(di(1,1)/R)),hi);
+    f = figure(n);
+    f.Visible = "off";
+    histogram('BinEdges',di,'BinCounts',hi);
+    hold on, plot((di(1:R)-(di(1,1)/R)),hi);
     
     % Área de cada barrita en el histograma.
     Pi=(DM/R)*hi;
@@ -60,7 +62,7 @@ function [hi,di,Pi]= AprxRho_310519_ALQR (prnuGRAY,R,DM,a,b,dirC_r,Nom_mat_prnu,
     % Directorio para guardar rho.
     DistEst=strcat(dirC_r,Nom_mat_prnu,'_rho.jpg');
     % Guarda el histograma como imagen.jpg.
-    saveas(figure(n),DistEst)
+    saveas(f, DistEst)
     % Cierra la figura identificada con n.
     close(n)
 end

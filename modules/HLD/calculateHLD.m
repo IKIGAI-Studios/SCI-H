@@ -1,6 +1,6 @@
-function devicesID = calculateHLD(conn, idQImage)
+function calculateHLD(conn, idQImage)
 %     conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
-%     idQImage = 43;
+%     idQImage = 32;
     
     queryImgDis = strcat("SELECT path, file FROM DisputeImage WHERE idQImage = ", string(idQImage));
     queryNImgRef = "SELECT idDevice, img_count FROM Device WHERE img_count >= 1";
@@ -93,13 +93,29 @@ function devicesID = calculateHLD(conn, idQImage)
         end
         
         %% Obtienen el máximo de una matriz que ya contiene los HLD promedio.
-        [imgR, imgD, device] = size(indC);
-        devicesID = zeros(imgD,2);
+        [~, imgD, ~] = size(indC);
         for i=1 : imgD
-            [data, maxnum] = countInRow(indC(:,i,1).');
+            % Obtener los resultados del conteo (posicion, numero de repeticiones, porcentaje)
+            data = countInRow(indC(:,i,1).');
             
-            devicesID(i,1) = table2array(imagenesRefDev(maxnum(1,1),1));
-            devicesID(i,2) = maxnum(1,3);
+            % Limpiar todos los registros de esta imagen
+            query = strcat("DELETE FROM HLD WHERE idQImage = ", string(idQImage));
+            try
+                fetch(conn, query);
+            catch e
+                msgbox(strcat("Error ", char(e.message)), "Warning", "error");
+            end
+
+            % Escribir estos datos en la BD para esta imagen
+            for j=1 : height(data)
+                query = table(idQImage, table2array(imagenesRefDev(data(j,1),1)), data(j,3), ...
+                                        'VariableNames', {'idQImage' 'idDevice' 'percentage'});
+                try
+                    sqlwrite(conn, 'HLD', query);
+                catch e
+                    msgbox(strcat("Error ", char(e.message)), "Warning", "error");
+                end
+            end
         end
     catch e
         msgbox(strcat("Error ", char(e.message)), "Warning", "error");
