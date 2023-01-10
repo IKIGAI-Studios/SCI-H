@@ -1,7 +1,7 @@
 function generateReport(conn, idUser, idQImage)
-    conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
-    idUser = 2;
-    idQImage = 32;
+%     conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
+%     idUser = 2;
+%     idQImage = 32;
     date = datetime;
 
     % Datos del usuario
