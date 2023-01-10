@@ -96,8 +96,20 @@ function calculateHLD(conn, idQImage)
         [~, imgD, ~] = size(indC);
         for i=1 : imgD
             % Obtener los resultados del conteo (posicion, numero de repeticiones, porcentaje)
-            data = countInRow(indC(:,i,1).');
+            data = zeros(nDevices,3);
+            resCount = countInRow(indC(:,i,1).');
             
+            % Rellenar los valores con coincidencia
+            for j=1 : height(data)
+                data(j,1) = j;
+                for k=1 : height(resCount)
+                    if j == resCount(k,1)
+                        data(j,2) = resCount(k,2);
+                        data(j,3) = resCount(k,3);
+                    end
+                end
+            end
+
             % Limpiar todos los registros de esta imagen
             query = strcat("DELETE FROM HLD WHERE idQImage = ", string(idQImage));
             try

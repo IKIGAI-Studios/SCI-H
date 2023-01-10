@@ -1,7 +1,7 @@
 function generateReport(conn, idUser, idQImage)
-%     conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
-%     idUser = 2;
-%     idQImage = 32;
+    conn = database('conn_scih', 'uqrpef8uvj0gk5k7', 'hS0C86ybuxlTFNVYSSto');
+    idUser = 2;
+    idQImage = 32;
     date = datetime;
 
     % Datos del usuario
@@ -33,7 +33,7 @@ function generateReport(conn, idUser, idQImage)
     end
 
     % Dispositivos de captura obtenidos por HLD
-    query = strcat("SELECT percentage, brand, model FROM HLD INNER JOIN Device ON HLD.idDevice = Device.idDevice WHERE idQImage = ",string(idQImage)," ORDER BY percentage");
+    query = strcat("SELECT percentage, brand, model FROM HLD INNER JOIN Device ON HLD.idDevice = Device.idDevice WHERE idQImage = ",string(idQImage)," ORDER BY percentage DESC");
     try
         devices = fetch(conn, query);
     catch e
